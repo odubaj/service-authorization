@@ -24,6 +24,7 @@ dependencyManagement {
     }
 }
 
+//test comment
 dependencies {
     if (releaseMode) {
         compile 'com.epam.reportportal:commons-dao'
