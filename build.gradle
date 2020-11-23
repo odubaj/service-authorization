@@ -30,7 +30,8 @@ dependencies {
         compile 'com.epam.reportportal:commons-rules'
         compile 'com.epam.reportportal:commons-model'
     } else {
-        compile 'com.github.reportportal:commons-dao:4dc6327'
+        //compile fileTree(dir: '/home/odubaj/DIPLOMKA/commons-dao/build/libs', include: ['*.jar'])
+        compile 'com.github.odubaj:commons-dao:ddc7a28'
         compile 'com.github.reportportal:commons-rules:331c402'
         compile 'com.github.reportportal:commons-model:22ccaac'
     }
