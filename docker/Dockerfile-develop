@@ -23,7 +23,7 @@ ENV APP_FILE=/app.jar
 
 VOLUME ["/tmp"]
 
-COPY --from=builder /usr/src/reportportal/build/libs/app.jar $APP_FILE
+COPY --from=builder /usr/src/reportportal/build/libs/*-exec.jar $APP_FILE
 
 RUN sh -c "touch $APP_FILE"
 
