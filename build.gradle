@@ -30,8 +30,8 @@ dependencies {
         compile 'com.epam.reportportal:commons-rules'
         compile 'com.epam.reportportal:commons-model'
     } else {
-        compile 'com.github.odubaj:commons-dao:e6a9c2b'
-        compile 'com.github.reportportal:commons-rules:e40bf6e2'
+        compile 'com.github.odubaj:commons-dao:0cd6e551'
+        compile 'com.github.odubaj:commons-rules:e5d0d8f'
         compile 'com.github.odubaj:commons-model:2a2f927'
     }
 

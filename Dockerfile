@@ -1,9 +1,32 @@
+FROM adoptopenjdk:11-jdk-hotspot-bionic as builder
+
+WORKDIR /usr/src/reportportal
+
+COPY gradle/ ./gradle
+COPY gradlew .
+RUN ./gradlew wrapper
+
+COPY project-properties.gradle build.gradle gradlew settings.gradle gradle.properties ./
+RUN ./gradlew resolveDependencies --stacktrace
+
+COPY . ./
+RUN ./gradlew build --stacktrace -P gcp
+
 FROM openjdk:11-jre-slim
-LABEL version=5.3.3 description="Unified Authorization Trap for all ReportPortal's Services" maintainer="Andrei Varabyeu <andrei_varabyeu@epam.com>"
-RUN apt-get update -qq && apt-get install -qq -y wget && \
-	echo 'exec java ${JAVA_OPTS} -jar service-authorization-5.3.3-exec.jar' > /start.sh && chmod +x /start.sh && \
-	wget -q https://dl.bintray.com/epam/reportportal/com/epam/reportportal/service-authorization/5.3.3/service-authorization-5.3.3-exec.jar
-ENV JAVA_OPTS="-Xmx512m -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=70 -Djava.security.egd=file:/dev/./urandom"
+LABEL maintainer="Andrei Varabyeu <andrei_varabyeu@epam.com>"
+
+RUN echo '#!/bin/sh \n exec java ${JAVA_OPTS} -jar ${APP_FILE}' > /start.sh && \
+    chmod +x /start.sh
+
+ENV JAVA_OPTS="-Xmx1g -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp -Djava.security.egd=file:/dev/./urandom"
+ENV APP_FILE=/app.jar
+
 VOLUME ["/tmp"]
+
+COPY --from=builder /usr/src/reportportal/build/libs/app.jar $APP_FILE
+
+RUN sh -c "touch $APP_FILE"
+
 EXPOSE 8080
-ENTRYPOINT ./start.sh
+
+ENTRYPOINT ["/start.sh"]
