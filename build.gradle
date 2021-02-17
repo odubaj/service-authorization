@@ -30,9 +30,9 @@ dependencies {
         compile 'com.epam.reportportal:commons-rules'
         compile 'com.epam.reportportal:commons-model'
     } else {
-        compile 'com.github.odubaj:commons-dao:dc2651e9'
+        compile 'com.github.odubaj:commons-dao:1954607c'
         compile 'com.github.odubaj:commons-rules:e5d0d8f'
-        compile 'com.github.odubaj:commons-model:2a2f927'
+        compile 'com.github.odubaj:commons-model:92d62eb8'
     }
 
     compile 'org.springframework.boot:spring-boot-starter-web'
