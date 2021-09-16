@@ -52,9 +52,9 @@ dependencies {
         compile 'com.epam.reportportal:commons-rules'
         compile 'com.epam.reportportal:commons-model'
     } else {
-        compile 'com.github.reportportal:commons-dao:ee3928c'
-        compile 'com.github.reportportal:commons-rules:331c402'
-        compile 'com.github.reportportal:commons-model:67a471c'
+        compile 'com.github.odubaj:commons-dao:09861d7'
+        compile 'com.github.odubaj:commons-rules:e5d0d8f'
+        compile 'com.github.odubaj:commons-model:92d62eb8'
     }
 
     //https://nvd.nist.gov/vuln/detail/CVE-2020-11996 AND https://nvd.nist.gov/vuln/detail/CVE-2020-9484
